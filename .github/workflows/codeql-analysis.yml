@@ -32,7 +32,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'cpp', 'javascript', 'python' ]
+        language: [ 'python' ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
         # Learn more:
         # https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#changing-the-languages-that-are-analyzed
@@ -69,3 +69,16 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
+      with:
+        upload: "false"
+    
+    - name: Filter Sarif
+      run: |
+       pwd
+       python scripts/filter_sarif.py
+   
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: results/python-new.sarif
