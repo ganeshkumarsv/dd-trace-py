@@ -1,7 +1,7 @@
 import json
 import copy
 
-f = open('/home/ec2-user/_work/dd-trace-py/results/python-builtin.sarif',)
+f = open('/home/ec2-user/_work/dd-trace-py/results/python.sarif',)
 
 data = json.load(f)
 temp = copy.deepcopy(data)
@@ -38,6 +38,6 @@ f.close()
 """
 Dumps the new SARIF after removing all unimportant redundant alerts
 """
-with open('/home/ec2-user/_work/dd-trace-py/results/python-new-builtin.sarif', 'w') as data_file:
+with open('/home/ec2-user/_work/dd-trace-py/results/python-new.sarif', 'w') as data_file:
     data = json.dump(temp, data_file)    
 
