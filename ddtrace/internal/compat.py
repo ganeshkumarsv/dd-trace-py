@@ -122,15 +122,6 @@ else:
     getrandbits = random.getrandbits
 
 
-if sys.version_info.major < 3:
-    if isinstance(threading.current_thread(), threading._MainThread):  # type: ignore[attr-defined]
-        main_thread = threading.current_thread()
-    else:
-        main_thread = threading._shutdown.im_self  # type: ignore[attr-defined]
-else:
-    main_thread = threading.main_thread()
-
-
 if PYTHON_VERSION_INFO[0:2] >= (3, 4):
     from asyncio import iscoroutinefunction
 

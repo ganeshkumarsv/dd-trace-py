@@ -262,8 +262,8 @@ def is_storage_device(name):
     including_virtual = True
     if including_virtual:
         path = "/sys/block/%s" % name
-    else:
-        path = "/sys/block/%s/device" % name
+    # else:
+    #     path = "/sys/block/%s/device" % name
     return os.access(path, os.F_OK)
 
 
@@ -306,6 +306,9 @@ def cat(fname, fallback=_DEFAULT, binary=True):
             return fallback
         else:
             raise
+    finally:
+        if not binary:
+            f.close()
 
 
 try:
@@ -364,7 +367,6 @@ def calculate_avail_vmem(mems):
             if line.startswith(b'low'):
                 watermark_low += int(line.split()[1])
     watermark_low *= PAGESIZE
-    watermark_low = watermark_low
 
     avail = free - watermark_low
     pagecache = lru_active_file + lru_inactive_file

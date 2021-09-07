@@ -70,16 +70,6 @@ elif OPENBSD or NETBSD:
         cext.SRUN: _common.STATUS_WAKING,
         cext.SONPROC: _common.STATUS_RUNNING,
     }
-elif NETBSD:
-    PROC_STATUSES = {
-        cext.SIDL: _common.STATUS_IDLE,
-        cext.SACTIVE: _common.STATUS_RUNNING,
-        cext.SDYING: _common.STATUS_ZOMBIE,
-        cext.SSTOP: _common.STATUS_STOPPED,
-        cext.SZOMB: _common.STATUS_ZOMBIE,
-        cext.SDEAD: _common.STATUS_DEAD,
-        cext.SSUSPENDED: _common.STATUS_SUSPENDED,  # unique to NetBSD
-    }
 
 TCP_STATUSES = {
     cext.TCPS_ESTABLISHED: _common.CONN_ESTABLISHED,
