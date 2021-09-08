@@ -1,3 +1,2 @@
-- description: Security-extended queries for Go
-- queries: codeql/python/ql/src@main
+- description: Security-extended queries for Python
 - apply: codeql-config.yml
