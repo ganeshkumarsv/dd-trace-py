@@ -17,8 +17,6 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ master ]
-  schedule:
-    - cron: '31 11 * * 2'
 
 jobs:
   analyze:
@@ -46,7 +44,6 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
-        queries: security-and-quality
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
@@ -70,3 +67,11 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
+      with:
+        upload: "false"
+   
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: /home/runner/work/dd-trace-py/results/python.sarif      
